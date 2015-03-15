@@ -1,0 +1,8 @@
+setwd("~/Desktop")
+data<-read.table("household_power_consumption.txt",header=TRUE,sep=";",na.strings="?")
+data$Datetime <- strptime(paste(data$Date, data$Time), "%d/%m/%Y %H:%M:%S")
+dat<-subset(data,Date=="2/2/2007"|Date=="1/2/2007")
+plot(dat$Datetime,dat$Sub_metering_1,type="l",xlab="",ylab="Energy sub metering")
+points(dat$Datetime,dat$Sub_metering_2,type="l",col="red")
+points(dat$Datetime,dat$Sub_metering_3,type="l",col="blue")
+legend("topright",lty=1,col=c("black","red","blue"),legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
